@@ -3,10 +3,11 @@
 import React from 'react'
 import Link from 'next/link'
 
-import { Header as HeaderType, User } from '../../../../payload/payload-types'
+import { Header as HeaderType } from '../../../../payload/payload-types'
 import { useAuth } from '../../../_providers/Auth'
 import { CartLink } from '../../CartLink'
 import { CMSLink } from '../../Link'
+import { Button } from '../../Button'
 
 import classes from './index.module.scss'
 
@@ -32,8 +33,23 @@ export const HeaderNav: React.FC<{ header: HeaderType }> = ({ header }) => {
       {user && <Link href="/account">Account</Link>}
       {!user && (
         <React.Fragment>
-          <Link href="/login">Login</Link>
-          <Link href="/create-account">Create Account</Link>
+          <Button
+            el="link"
+            href="/login"
+            label="Login"
+            appearance="primary"
+            onClick={() => (window.location.href = '/login')}
+          />
+          <Button
+            el="link"
+            href="/create-account"
+            label="Create Account"
+            appearance="secondary"
+            onClick={() => (window.location.href = '/create-account')}
+          />
+          {/* <Link href="/login">Login</Link>  */}
+          {/* <Link href="/create-account">Create Account</Link> */}
+          {user && <CartLink />}
         </React.Fragment>
       )}
     </nav>
